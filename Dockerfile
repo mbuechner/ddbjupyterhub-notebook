@@ -24,7 +24,7 @@ RUN mamba env update -f /tmp/environment.yaml && \
     fix-permissions "/home/${NB_USER}"
 
 # Enable extensions
-RUN jupyter labextension enable jupyter-ai jupyter-ai-magics jupyter-collaboration jupyter_scheduler jupyterlab-spellchecker;
+RUN jupyter labextension enable jupyter-ai jupyter-ai-magics jupyter-collaboration jupyter-collaboration-ui jupyter_scheduler jupyterlab-spellchecker;
 
 # Download Spacy model
 RUN python -m spacy download de_core_news_lg;

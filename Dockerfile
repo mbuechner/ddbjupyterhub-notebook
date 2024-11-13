@@ -17,8 +17,6 @@ USER jovyan
 # copy environment.yaml
 COPY environment.yaml /tmp
 
-RUN cat /tmp/environment.yaml
-
 # install packages from environment
 RUN mamba env update -f /tmp/environment.yaml && \
     mamba clean --all -f -y && \

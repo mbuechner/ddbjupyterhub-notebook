@@ -1,0 +1,69 @@
+FROM quay.io/jupyter/scipy-notebook:notebook-7.2.2
+
+USER root
+ENV TZ=Europe/Berlin
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update \
+    && apt-get -y upgrade\
+    && apt-get install -y hunspell-de-de \
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm /var/log/alternatives.log /var/log/apt/* \
+    && rm -R /var/log/* /var/lib/apt/lists/*;
+
+USER jovyan
+
+# Update all Python packages
+RUN mamba update --all -y;
+
+# Downgrade numpy to version 1 AND install Jupyter Scheduler with 3 downgrades
+RUN mamba install -y numpy=1 jupyter_scheduler
+
+# Installed needed packages
+RUN mamba install -y \
+  bs4 \
+  folium \
+  geopy \
+  huggingface_hub \
+  jupyter-ai \
+  jupyter-ai-magics \
+  jupyter-collaboration \
+  jupyterlab-language-pack-de-DE \
+  jupyterlab-spellchecker \
+  langchain-openai \
+  lxml \
+  matplotlib \
+  nltk \
+  pdf2image \
+  plotly \
+  polars \
+  pydeck \
+  pyLDAvis \
+  PyPDF2 \
+  SPARQLWrapper \
+  streamlit-folium \
+  tweepy \
+  voila \
+  wget \
+  wordcloud \
+  xlsxwriter;
+
+# Install llama_index because mamba fails, pymods because only at pip and spacy
+RUN pip install --upgrade-strategy only-if-needed llama_index pymods "spacy>=3.7.5,<3.8.0" sickle tables
+
+RUN mamba clean --all -f -y && \
+    fix-permissions "${CONDA_DIR}" && \
+    fix-permissions "/home/${NB_USER}"
+
+# Enable extensions
+RUN jupyter labextension enable jupyter-ai jupyter-ai-magics jupyter_scheduler jupyterlab-spellchecker;
+
+# Download Spacy model
+RUN python -m spacy download de_core_news_lg;
+
+RUN mamba env export --no-builds > /tmp/environment.yaml && \
+  pip freeze > /tmp/requirements.txt && \
+  echo "*** /tmp/environment.yaml ***" && \
+  cat /tmp/environment.yaml && \
+  echo "*** /tmp/requirements.txt ***" && \
+  cat /tmp/requirements.txt;

@@ -338,6 +338,7 @@ dependencies:
   - nbconvert-pandoc=7.16.4
   - nbdime=4.0.2
   - nbformat=5.10.4
+  - nbgrader=0.9.3
   - ncurses=6.5
   - nest-asyncio=1.6.0
   - networkx=3.4.2
@@ -423,6 +424,7 @@ dependencies:
   - pyzmq=26.2.0
   - qhull=2020.2
   - qt6-main=6.8.0
+  - rapidfuzz=3.10.1
   - rav1e=0.6.6
   - rdflib=7.1.1
   - re2=2024.07.02

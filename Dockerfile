@@ -28,7 +28,7 @@ RUN mamba env update -f /tmp/environment.yaml && \
 #   cat /tmp/environment-new.yaml;
 
 # Enable extensions
-RUN jupyter labextension enable jupyter-ai jupyter-ai-magics jupyter-collaboration jupyter-shared-drive jupyter_scheduler jupyterlab-spellchecker;
+RUN jupyter labextension enable jupyter-ai jupyter-ai-magics jupyter-collaboration jupyter_scheduler jupyterlab-spellchecker;
 
 # Download Spacy model
 RUN python -m spacy download de_core_news_lg;

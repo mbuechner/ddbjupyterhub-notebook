@@ -14,18 +14,20 @@ RUN apt-get update \
 
 USER jovyan
 
-# copy environment.yaml
-COPY environment.yaml /tmp
+# copy environment.yml
+COPY environment.yml /tmp
 
 # install packages from environment
-RUN mamba env update -f /tmp/environment.yaml && \
+RUN mamba env update -f /tmp/environment.yml && \
     mamba clean --all -f -y && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
+# RUN mamba update --all
+
 # RUN pip install jupyter-shared-drive
-# RUN mamba env export --no-builds > /tmp/environment-new.yaml && \
-#   cat /tmp/environment-new.yaml;
+#  RUN mamba env export --no-builds > /tmp/environment-new.yml && \
+#    cat /tmp/environment-new.yml;
 
 # Enable extensions
 RUN jupyter labextension enable jupyter-ai jupyter-ai-magics jupyter-collaboration jupyter_scheduler jupyterlab-spellchecker;

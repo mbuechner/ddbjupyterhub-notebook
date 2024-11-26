@@ -23,14 +23,17 @@ RUN mamba env update -f /tmp/environment.yml && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
-# RUN mamba update --all
-
+# RUN mamba update -y --all;
+# RUN pip install pip-review && \
+#   pip-review --auto && \
+#   pip uninstall --yes pip-review;
+# RUN mamba install -y jupyter-resource-usage;
 # RUN pip install jupyter-shared-drive
-#  RUN mamba env export --no-builds > /tmp/environment-new.yml && \
-#    cat /tmp/environment-new.yml;
+# RUN mamba env export --no-builds > /tmp/environment-new.yml && \
+#  cat /tmp/environment-new.yml;
 
 # Enable extensions
-RUN jupyter labextension enable jupyter-ai jupyter-ai-magics jupyter-collaboration jupyter_scheduler jupyterlab-spellchecker;
+RUN jupyter labextension enable jupyter-ai jupyter-ai-magics jupyter_scheduler jupyterlab-spellchecker jupyter_resource_usage;
 
 # Download Spacy model
 RUN python -m spacy download de_core_news_lg;

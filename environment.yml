@@ -180,8 +180,6 @@ dependencies:
   - jupyter-ai=2.28.2
   - jupyter-ai-magics=2.28.2
   - jupyter-collaboration=3.0.0
-  - jupyter-collaboration-ui=1.0.0
-  - jupyter-docprovider=1.0.0
   - jupyter-lsp=2.2.5
   - jupyter-resource-usage=1.1.0
   - jupyter-server-mathjax=0.2.6

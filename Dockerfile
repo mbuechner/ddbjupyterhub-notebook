@@ -27,7 +27,7 @@ RUN mamba env update -f /tmp/environment.yml && \
 # RUN pip install pip-review && \
 #   pip-review --auto && \
 #   pip uninstall --yes pip-review;
-# RUN mamba install -y jupyter-resource-usage;
+# RUN mamba uninstall -y nbgrader;
 # RUN pip install jupyter-shared-drive
 # RUN mamba env export --no-builds > /tmp/environment-new.yml && \
 #  cat /tmp/environment-new.yml;

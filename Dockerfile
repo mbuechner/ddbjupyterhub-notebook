@@ -27,13 +27,15 @@ RUN mamba env update -f /tmp/environment.yml && \
 # RUN pip install pip-review && \
 #   pip-review --auto && \
 #   pip uninstall --yes pip-review;
-# RUN mamba uninstall -y nbgrader;
-# RUN pip install jupyter-shared-drive
+# RUN pip uninstall -y jupyter-shared-docprovider;
+# RUN mamba install langchain-openai langchain-aws langchain-google-genai;
+# RUN pip install gpt4all;
+# RUN mamba install --freeze-installed jupyterlab=4.3.1;
 # RUN mamba env export --no-builds > /tmp/environment-new.yml && \
 #  cat /tmp/environment-new.yml;
 
 # Enable extensions
-RUN jupyter labextension enable jupyter-ai jupyter-ai-magics jupyter_scheduler jupyterlab-spellchecker jupyter_resource_usage;
+# RUN jupyter labextension enable jupyter-ai jupyter-ai-magics jupyter_scheduler jupyterlab-spellchecker jupyter_resource_usage;
 
 # Download Spacy model
 RUN python -m spacy download de_core_news_lg;

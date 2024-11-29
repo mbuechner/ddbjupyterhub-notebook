@@ -577,9 +577,6 @@ dependencies:
       - dirtyjson==1.0.8
       - filetype==1.2.0
       - gpt4all==2.8.2
-      - jupyter-server-signaling==0.1.9
-      - jupyter-shared-drive==0.1.9
-      - jupyter-shared-drive-ui==0.1.9
       - langcodes==3.4.1
       - language-data==1.2.0
       - llama-cloud==0.1.5
